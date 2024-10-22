@@ -1,4 +1,4 @@
-export function createTimeTable(data) {
+export function convertTimeTable(data) {
   let weekdays, saturday, sunday;
 
   if (data.timeTable) {
@@ -16,7 +16,7 @@ export function createTimeTable(data) {
   return `${weekdays} ${saturday} ${sunday}`;
 }
 
-export function createAddress(data) {
+export function convertAddress(data) {
   return `${data.street} ${data.number} ${data.neighborhood}`;
 }
 

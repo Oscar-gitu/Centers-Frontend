@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { convertServices } from "../Utils/modelDetailsUtils";
 
 const style = {
   position: "absolute",
@@ -11,9 +12,10 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  border: "1px solid #000",
+  boxShadow: "5px 5px 15px rgba(0, 0, 0, 0.1)",
   p: 4,
+  borderRadius: "16px",
 };
 
 export default function ModalDetails({ data }) {
@@ -31,7 +33,12 @@ export default function ModalDetails({ data }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            style={{ marginBottom: 20, color: "blue", fontWeight: 700 }}
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
             {data.centerName}
           </Typography>
           {data.embed ? (
@@ -46,7 +53,12 @@ export default function ModalDetails({ data }) {
 
           {data.whatsAppLink ? (
             <React.Fragment>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography
+                style={{ marginBottom: 20, marginTop: 20 }}
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
                 Comunicate con nosotros:
               </Typography>
               <a
@@ -56,6 +68,21 @@ export default function ModalDetails({ data }) {
               >
                 WhatsApp
               </a>
+            </React.Fragment>
+          ) : null}
+          {data.services && Object.keys(data.services).length > 0 ? (
+            <React.Fragment>
+              <Typography
+                style={{ marginBottom: 10, marginTop: 20 }}
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
+                Nuestros servicios:
+              </Typography>
+              <Typography id="modal-modal-title" component="h2">
+                {convertServices(data)}
+              </Typography>
             </React.Fragment>
           ) : null}
         </Box>

@@ -1,28 +1,50 @@
-import React, { memo } from 'react';
-import { Card, CardContent, CardActions, Typography, Grid2 as Grid} from '@mui/material';
-import Logo from '../img/LogoDiente.png';
-import { convertTimeTable, convertAddress } from '../Utils/cardDetailsUtils'
-import ModalDetails from './ModalDetails';
+import React, { memo } from "react";
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+  Grid2 as Grid,
+} from "@mui/material";
+import Logo from "../img/LogoDiente.png";
+import { convertTimeTable, convertAddress } from "../Utils/cardDetailsUtils";
+import ModalDetails from "./ModalDetails";
+import './css/cardDetails.css'
 
 const CardDetails = memo(function CardDetails({ data }) {
   return (
-    <Card style={{ margin: 10, borderRadius:20, boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)', minHeight:240, paddingTop:15 }}>
+    <Card
+      className="card"
+    >
       <CardContent>
         <Grid container>
-          <Grid size={3} style={{alignContent: 'center' }}>
+          <Grid
+            size={{ xs: 3, md: 4, lg: 3 }}
+            style={{ alignContent: "center", textAlign: "center" }}
+          >
             <div>
               <img
                 src={Logo}
                 alt=""
-                style={{ width: "80px", height: "80px"}}
+                className="icon"
               />
             </div>
           </Grid>
-          <Grid size={9} sx={{ textAlign: 'left' }}>
+          <Grid size={{ xs: 9, md: 8, lg: 9 }} sx={{ textAlign: "left" }}>
             <div>
-              <Typography style={{color:'blue', fontWeight:700, fontSize:20}}>{data.zone}</Typography>
-              <Typography style={{fontWeight:700, fontSize:16}}>{data.centerType}</Typography>
-              <Typography style={{color:'red', fontWeight:700, fontSize:20}}>{data.promo}</Typography>
+              <Typography
+                className="zone"
+              >
+                {data.zone}
+              </Typography>
+              <Typography className="centertype">
+                {data.centerType}
+              </Typography>
+              <Typography
+                className="promo"
+              >
+                {data.promo}
+              </Typography>
               <Typography>{convertAddress(data)}</Typography>
               <Typography>{convertTimeTable(data)}</Typography>
             </div>
@@ -30,7 +52,7 @@ const CardDetails = memo(function CardDetails({ data }) {
         </Grid>
       </CardContent>
 
-      <CardActions style={{ justifyContent: 'center' }}>
+      <CardActions style={{ justifyContent: "center" }}>
         <ModalDetails data={data}></ModalDetails>
       </CardActions>
     </Card>

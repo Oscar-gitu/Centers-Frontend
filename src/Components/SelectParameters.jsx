@@ -5,6 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import './css/selectParameters.css'
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -52,7 +53,7 @@ export default function SelectParameters({data, setOption, name}) {
           onChange={handleChange}
           input={<OutlinedInput label={name} />}
           MenuProps={MenuProps}
-          style={{margin:10, borderRadius:10, boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.1)'}}
+          className='select'
         >
           {data.map((option) => (
             <MenuItem

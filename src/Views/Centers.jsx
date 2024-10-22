@@ -5,8 +5,9 @@ import CardDetails from "../Components/CardDetails";
 import { result } from "../Utils/cardDetailsUtils";
 import { getParameters } from "../Utils/centerUtils";
 import SelectParameters from "../Components/SelectParameters";
+import NotFound from "../Components/NotFound";
 
-const Centers = (props) => {
+const Centers = () => {
   const [data, setdata] = useState(result);
   const [zones, setZones] = useState([]);
   const [centerType, setCenterType] = useState([]);
@@ -21,7 +22,7 @@ const Centers = (props) => {
       getParameters(data);
     if (zones.length > 0) {
       setStates(uniqueStates);
-    } else {
+    } else { //Se guardan por unica ves el listado para los filtros, para darle al usuario todas las opciones
       setZones(uniqueZones);
       setCenterType(uniqueCenterTypes);
       setServices(uniqueServices);
@@ -47,8 +48,8 @@ const Centers = (props) => {
       );
       if (response.status === 200) {
         let dataResponse = response.data.result.message;
-        setdata(dataResponse);
-        setParameters(dataResponse);
+        setdata(dataResponse); //Se guardan los valores
+        setParameters(dataResponse); //Se crean los valores para los select
       } else {
         console.error(`Error: ${response}`);
       }
@@ -62,41 +63,29 @@ const Centers = (props) => {
   }, [optionsZone, optionsCenterType, optionsServices]);
 
   return (
-    <div style={{ marginTop: 30 }}>
+    <div style={{ marginTop: 50 }}>
       <div style={{ marginBottom: 30 }}>
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 4 }}>
-            <div>
-              <SelectParameters
-                data={zones}
-                setOption={setoptionsZone}
-                name={"Zona"}
-              />
-            </div>
-          </Grid>
-          <Grid size={{ xs: 12, sm: 4 }}>
-            <div>
-              <SelectParameters
-                data={centerType}
-                setOption={setoptionsCenterType}
-                name={"Centro"}
-              />
-            </div>
-          </Grid>
-          <Grid size={{ xs: 12, sm: 4 }}>
-            <div>
-              <SelectParameters
-                data={services}
-                setOption={setoptionsServices}
-                name={"Servicio"}
-              />
-            </div>
-          </Grid>
+         <Grid container spacing={3}> {/*por cada listado de opciones se crea un select */}
+          {[
+            { data: zones, setOption: setoptionsZone, name: "Zona" },
+            { data: centerType, setOption: setoptionsCenterType, name: "Centro" },
+            { data: services, setOption: setoptionsServices, name: "Servicio" },
+          ].map((param, index) => (
+            <Grid size={{ xs: 12, sm: 4 }} key={index}>
+              <div>
+                <SelectParameters
+                  data={param.data}
+                  setOption={param.setOption}
+                  name={param.name}
+                />
+              </div>
+            </Grid>
+          ))}
         </Grid>
       </div>
       <Grid container spacing={3} justifyContent="center">
         {data.length > 0 ? (
-          states.map((state) => (
+          states.map((state) => ( //Se filtra por estado para organizarlo y despues se lista cada valor
             <Grid size={12} key={state}>
               <div>
                 <Typography variant="h6">{state}</Typography>
@@ -119,18 +108,7 @@ const Centers = (props) => {
             </Grid>
           ))
         ) : (
-          <div>
-            <Typography
-              style={{
-                color: "red",
-                fontWeight: 700,
-                fontSize: 20,
-                margin: 50,
-              }}
-            >
-              No se encontraron resultados
-            </Typography>
-          </div>
+          <NotFound />
         )}
       </Grid>
     </div>

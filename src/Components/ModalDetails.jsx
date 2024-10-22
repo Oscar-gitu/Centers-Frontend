@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { convertServices } from "../Utils/modelDetailsUtils";
+import "./css/modalDetails.css";
 
 const style = {
   position: "absolute",
@@ -34,7 +35,7 @@ export default function ModalDetails({ data }) {
       >
         <Box sx={style}>
           <Typography
-            style={{ marginBottom: 20, color: "blue", fontWeight: 700 }}
+            className="center-name"
             id="modal-modal-title"
             variant="h6"
             component="h2"
@@ -54,7 +55,7 @@ export default function ModalDetails({ data }) {
           {data.whatsAppLink ? (
             <React.Fragment>
               <Typography
-                style={{ marginBottom: 20, marginTop: 20 }}
+                className="comunicate"
                 id="modal-modal-title"
                 variant="h6"
                 component="h2"
@@ -73,7 +74,7 @@ export default function ModalDetails({ data }) {
           {data.services && Object.keys(data.services).length > 0 ? (
             <React.Fragment>
               <Typography
-                style={{ marginBottom: 10, marginTop: 20 }}
+                className="services"
                 id="modal-modal-title"
                 variant="h6"
                 component="h2"

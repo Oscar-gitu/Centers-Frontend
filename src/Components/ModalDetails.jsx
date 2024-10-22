@@ -55,7 +55,7 @@ export default function ModalDetails({ data }) {
           {data.whatsAppLink ? (
             <React.Fragment>
               <Typography
-                className="comunicate"
+                className="communicate"
                 id="modal-modal-title"
                 variant="h6"
                 component="h2"

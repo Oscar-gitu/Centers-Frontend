@@ -1,11 +1,16 @@
-import "./App.css";
+import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Centers from "./Views/Centers";
+import NotFoundPage from './Views/NotFoundPage';
 
 function App() {
   return (
-    <div className="App">
-      <Centers></Centers>
-    </div>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Centers />}></Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+    </BrowserRouter>
   );
 }
 

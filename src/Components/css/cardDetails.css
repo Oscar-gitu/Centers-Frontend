@@ -6,6 +6,12 @@
     padding-top: 15px;
 }
 
+@media (min-width: 900px) and (max-width: 1200px) {
+    .card {
+        min-height: 320px;
+    }
+}
+
 .icon {
     width: 90px;
     height: 100px;

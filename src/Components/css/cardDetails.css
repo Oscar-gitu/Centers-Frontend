@@ -4,11 +4,13 @@
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2) !important;
     min-height: 240px;
     padding-top: 15px;
+    display: flex;
+    flex-direction: column
 }
 
 @media (min-width: 900px) and (max-width: 1200px) {
     .card {
-        min-height: 320px;
+        min-height: 340px;
     }
 }
 

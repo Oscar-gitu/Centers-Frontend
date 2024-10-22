@@ -5,13 +5,14 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { convertServices } from "../Utils/modelDetailsUtils";
 import "./css/modalDetails.css";
+import maps from '../img/maps.jpg'
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "60%",
   bgcolor: "background.paper",
   border: "1px solid #000",
   boxShadow: "5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -26,7 +27,9 @@ export default function ModalDetails({ data }) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Mas Informacion</Button>
+      <Button className="information" onClick={handleOpen}>
+        Mas Informacion
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -45,9 +48,14 @@ export default function ModalDetails({ data }) {
           {data.embed ? (
             <div dangerouslySetInnerHTML={{ __html: data.embed }} />
           ) : data.mapUrl ? (
-            <a href={data.mapUrl} target="_blank" rel="noopener noreferrer">
-              Ver en Google Maps
-            </a>
+            <React.Fragment>
+              <img className="image-maps" src={maps} alt="" />
+              <a href={data.mapUrl} target="_blank" rel="noopener noreferrer">
+                <p className="ref-maps">
+                  VER EN GOOGLE MAPS
+                </p>
+              </a>
+            </React.Fragment>
           ) : (
             "No existe referencia para mapa"
           )}

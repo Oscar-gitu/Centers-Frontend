@@ -16,7 +16,7 @@ const CardDetails = memo(function CardDetails({ data }) {
     <Card
       className="card"
     >
-      <CardContent>
+      <CardContent style={{ flexGrow: 1 }}>
         <Grid container>
           <Grid
             size={{ xs: 3, md: 4, lg: 3 }}

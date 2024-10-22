@@ -65,7 +65,7 @@ const Centers = () => {
   }, [optionsZone, optionsCenterType, optionsServices]);
 
   return (
-    <div style={{ marginTop: 50 }}>
+    <div className="principal-div">
       <div style={{ marginBottom: 30 }}>
          <Grid container spacing={3}> {/*por cada listado de opciones se crea un select */}
           {[

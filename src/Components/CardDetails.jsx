@@ -3,11 +3,10 @@ import { Card, CardContent, CardActions, Typography, Grid2 as Grid} from '@mui/m
 import Logo from '../img/LogoDiente.png';
 import { convertTimeTable, convertAddress } from '../Utils/cardDetailsUtils'
 import ModalDetails from './ModalDetails';
-import { red } from '@mui/material/colors';
 
 const CardDetails = memo(function CardDetails({ data }) {
   return (
-    <Card style={{ margin: 10, borderRadius:20, boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)', minHeight:200, paddingTop:15 }}>
+    <Card style={{ margin: 10, borderRadius:20, boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)', minHeight:240, paddingTop:15 }}>
       <CardContent>
         <Grid container>
           <Grid size={3} style={{alignContent: 'center' }}>

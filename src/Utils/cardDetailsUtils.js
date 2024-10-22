@@ -6,9 +6,9 @@ export function convertTimeTable(data) {
       ? `L-V ${data.timeTable.weekdays[0]} `
       : "";
     saturday = data.timeTable.saturday
-      ? `S ${data.timeTable.saturday[0]} `
+      ? `/ S ${data.timeTable.saturday[0]} `
       : "";
-    sunday = data.timeTable.sunday ? `D ${data.timeTable.sunday[0]} ` : "";
+    sunday = data.timeTable.sunday ? `/ D ${data.timeTable.sunday[0]} ` : "";
   } else {
     return "Sin informacion";
   }
@@ -17,7 +17,7 @@ export function convertTimeTable(data) {
 }
 
 export function convertAddress(data) {
-  return `${data.street} ${data.number} ${data.neighborhood}`;
+  return `${data?.street || ''} ${data?.number  || ''} ${data?.neighborhood  || ''}`;
 }
 
 export const result = [

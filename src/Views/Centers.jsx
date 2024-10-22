@@ -63,7 +63,7 @@ const Centers = (props) => {
 
   return (
     <div style={{ marginTop: 30 }}>
-      <div style={{marginBottom:30}}>
+      <div style={{ marginBottom: 30 }}>
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, sm: 4 }}>
             <div>
@@ -94,29 +94,44 @@ const Centers = (props) => {
           </Grid>
         </Grid>
       </div>
-      <Grid container spacing={3}>
-        {states.map((state) => (
-          <Grid size={12} key={state}>
-            <div>
-              <Typography variant="h6">{state}</Typography>
-              <Grid container spacing={2}>
-                {data
-                  .filter(
-                    (item) =>
-                      item.state === state ||
-                      (!item.state && state === "No Especificado")
-                  )
-                  .map((filteredItem, index) => (
-                    <Grid key={index} size={{ xs: 12, md: 4 }}>
-                      <div>
-                        <CardDetails data={filteredItem} />
-                      </div>
-                    </Grid>
-                  ))}
-              </Grid>
-            </div>
-          </Grid>
-        ))}
+      <Grid container spacing={3} justifyContent="center">
+        {data.length > 0 ? (
+          states.map((state) => (
+            <Grid size={12} key={state}>
+              <div>
+                <Typography variant="h6">{state}</Typography>
+                <Grid container spacing={2}>
+                  {data
+                    .filter(
+                      (item) =>
+                        item.state === state ||
+                        (!item.state && state === "No Especificado")
+                    )
+                    .map((filteredItem, index) => (
+                      <Grid key={index} size={{ xs: 12, md: 4 }}>
+                        <div>
+                          <CardDetails data={filteredItem} />
+                        </div>
+                      </Grid>
+                    ))}
+                </Grid>
+              </div>
+            </Grid>
+          ))
+        ) : (
+          <div>
+            <Typography
+              style={{
+                color: "red",
+                fontWeight: 700,
+                fontSize: 20,
+                margin: 50,
+              }}
+            >
+              No se encontraron resultados
+            </Typography>
+          </div>
+        )}
       </Grid>
     </div>
   );

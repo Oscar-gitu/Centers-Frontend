@@ -6,6 +6,7 @@ import { result } from "../Utils/cardDetailsUtils";
 import { getParameters } from "../Utils/centerUtils";
 import SelectParameters from "../Components/SelectParameters";
 import NotFound from "../Components/NotFound";
+import config from "../config";
 
 const Centers = () => {
   const [data, setdata] = useState(result);
@@ -32,12 +33,12 @@ const Centers = () => {
 
   const fetchData = async () => {
     const headers = {
-      "X-Parse-Application-Id": "IYL2kaPXOXZ6XjQlLcaxHKggtMIKiT9LojBq1TK6",
-      "X-Parse-REST-API-Key": "bpJoBMPzjjm21F6bwUt1x1AMpZXuFuZOcP1guGqO",
+      "X-Parse-Application-Id": config.appId,
+      "X-Parse-REST-API-Key": config.apiKey,
     };
     try {
       const response = await axios.post(
-        "https://parseapi.back4app.com/functions/Centers",
+        config.apiUrl,
         {
           Limit: 100,
           Zone: optionsZone === "Todos" ? "" : optionsZone,

@@ -12,9 +12,9 @@ const Centers = (props) => {
   const [centerType, setCenterType] = useState([]);
   const [services, setServices] = useState([]);
   const [states, setStates] = useState([]);
-  const [optionsZone, setoptionsZone] = useState('');
-  const [optionsCenterType, setoptionsCenterType] = useState('');
-  const [optionsServices, setoptionsServices] = useState('');
+  const [optionsZone, setoptionsZone] = useState("");
+  const [optionsCenterType, setoptionsCenterType] = useState("");
+  const [optionsServices, setoptionsServices] = useState("");
 
   const setParameters = (data) => {
     const { uniqueZones, uniqueCenterTypes, uniqueServices, uniqueStates } =
@@ -39,9 +39,9 @@ const Centers = (props) => {
         "https://parseapi.back4app.com/functions/Centers",
         {
           Limit: 100,
-          Zone: optionsZone,
-          Center_Type: optionsCenterType,
-          Services: optionsServices,
+          Zone: optionsZone === "Todos" ? "" : optionsZone,
+          Center_Type: optionsCenterType === "Todos" ? "" : optionsCenterType,
+          Services: optionsServices === "Todos" ? "" : optionsServices,
         },
         { headers }
       );
@@ -63,27 +63,37 @@ const Centers = (props) => {
 
   return (
     <div style={{ marginTop: 30 }}>
-      <Grid container spacing={3}>
-        <Grid size={{ xs: 12, sm: 4 }}>
-          <div>
-            <SelectParameters data={zones} setOption={setoptionsZone} name={'Zona'}/>
-          </div>
+      <div style={{marginBottom:30}}>
+        <Grid container spacing={3}>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <div>
+              <SelectParameters
+                data={zones}
+                setOption={setoptionsZone}
+                name={"Zona"}
+              />
+            </div>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <div>
+              <SelectParameters
+                data={centerType}
+                setOption={setoptionsCenterType}
+                name={"Centro"}
+              />
+            </div>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <div>
+              <SelectParameters
+                data={services}
+                setOption={setoptionsServices}
+                name={"Servicio"}
+              />
+            </div>
+          </Grid>
         </Grid>
-        <Grid size={{ xs: 12, sm: 4 }}>
-          <div>
-            <SelectParameters
-              data={centerType}
-              setOption={setoptionsCenterType}
-              name={'Centro'}
-            />
-          </div>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 4 }}>
-          <div>
-            <SelectParameters data={services} setOption={setoptionsServices} name={'Servicio'}/>
-          </div>
-        </Grid>
-      </Grid>
+      </div>
       <Grid container spacing={3}>
         {states.map((state) => (
           <Grid size={12} key={state}>
@@ -97,7 +107,7 @@ const Centers = (props) => {
                       (!item.state && state === "No Especificado")
                   )
                   .map((filteredItem, index) => (
-                    <Grid key={index} size={{ xs: 12, sm: 4 }}>
+                    <Grid key={index} size={{ xs: 12, md: 4 }}>
                       <div>
                         <CardDetails data={filteredItem} />
                       </div>

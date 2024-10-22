@@ -7,6 +7,7 @@ import { getParameters } from "../Utils/centerUtils";
 import SelectParameters from "../Components/SelectParameters";
 import NotFound from "../Components/NotFound";
 import config from "../config";
+import './css/centers.css'
 
 const Centers = () => {
   const [data, setdata] = useState(result);
@@ -89,7 +90,7 @@ const Centers = () => {
           states.map((state) => ( //Se filtra por estado para organizarlo y despues se lista cada valor
             <Grid size={12} key={state}>
               <div>
-                <Typography variant="h6">{state}</Typography>
+                <Typography variant="h6" className="state">{state}</Typography>
                 <Grid container spacing={2}>
                   {data
                     .filter(

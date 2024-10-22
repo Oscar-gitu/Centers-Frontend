@@ -27,8 +27,7 @@ function getStyles(data, value, theme) {
 
 export default function SelectParameters({data, setOption, name}) {
   const theme = useTheme();
-  const [value, setValue] = React.useState([]);
-  console.log(data);
+  const [value, setValue] = React.useState(['Todos']);
 
   const handleChange = (event) => {
     const {
@@ -53,6 +52,7 @@ export default function SelectParameters({data, setOption, name}) {
           onChange={handleChange}
           input={<OutlinedInput label={name} />}
           MenuProps={MenuProps}
+          style={{margin:10, borderRadius:10, boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.1)'}}
         >
           {data.map((option) => (
             <MenuItem

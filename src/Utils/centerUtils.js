@@ -1,7 +1,7 @@
 export const getParameters = (data) => {
-    const uniqueZones = new Set();
-    const uniqueCenterTypes = new Set();
-    const uniqueServices = new Set();
+    const uniqueZones = new Set(['Todos']);
+    const uniqueCenterTypes = new Set(['Todos']);
+    const uniqueServices = new Set(['Todos']);
     const uniqueStates = new Set();
   
     data.forEach((center) => {
@@ -19,7 +19,6 @@ export const getParameters = (data) => {
       }
       if (state) uniqueStates.add(state);
     });
-    console.log(Array.from(uniqueStates));
   
     return {
       uniqueZones: Array.from(uniqueZones),

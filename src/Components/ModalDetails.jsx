@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { convertServices } from "../Utils/modelDetailsUtils";
 import "./css/modalDetails.css";
-import maps from '../img/maps.jpg'
+import maps from "../img/maps.jpg";
 
 const style = {
   position: "absolute",
@@ -51,9 +51,7 @@ export default function ModalDetails({ data }) {
             <React.Fragment>
               <img className="image-maps" src={maps} alt="" />
               <a href={data.mapUrl} target="_blank" rel="noopener noreferrer">
-                <p className="ref-maps">
-                  VER EN GOOGLE MAPS
-                </p>
+                <p className="text-modal">VER EN GOOGLE MAPS</p>
               </a>
             </React.Fragment>
           ) : (
@@ -75,7 +73,7 @@ export default function ModalDetails({ data }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WhatsApp
+                <p className="text-modal">WHATSAPP</p>
               </a>
             </React.Fragment>
           ) : null}

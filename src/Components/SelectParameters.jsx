@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import './css/selectParameters.css'
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import "./css/selectParameters.css";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -26,25 +26,21 @@ function getStyles(data, value, theme) {
   };
 }
 
-export default function SelectParameters({data, setOption, name}) {
+export default function SelectParameters({ data, setOption, name }) {
   const theme = useTheme();
-  const [value, setValue] = React.useState(['Todos']);
+  const [value, setValue] = React.useState(["Todos"]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setValue(
-      value
-    );
-    setOption(
-        value
-    )
+    setValue(value);
+    setOption(value);
   };
 
   return (
     <div>
-      <FormControl sx={{ width:'100%'}}>
+      <FormControl sx={{ width: "100%" }}>
         <InputLabel id="name-label">{name}</InputLabel>
         <Select
           labelId="options"
@@ -53,7 +49,7 @@ export default function SelectParameters({data, setOption, name}) {
           onChange={handleChange}
           input={<OutlinedInput label={name} />}
           MenuProps={MenuProps}
-          className='select'
+          className="select"
         >
           {data.map((option) => (
             <MenuItem

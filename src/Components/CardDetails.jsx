@@ -9,13 +9,11 @@ import {
 import Logo from "../img/LogoDiente.png";
 import { convertTimeTable, convertAddress } from "../Utils/cardDetailsUtils";
 import ModalDetails from "./ModalDetails";
-import './css/cardDetails.css'
+import "./css/cardDetails.css";
 
 const CardDetails = memo(function CardDetails({ data }) {
   return (
-    <Card
-      className="card"
-    >
+    <Card className="card">
       <CardContent style={{ flexGrow: 1 }}>
         <Grid container>
           <Grid
@@ -23,28 +21,14 @@ const CardDetails = memo(function CardDetails({ data }) {
             style={{ alignContent: "center", textAlign: "center" }}
           >
             <div>
-              <img
-                src={Logo}
-                alt=""
-                className="icon"
-              />
+              <img src={Logo} alt="" className="icon" />
             </div>
           </Grid>
           <Grid size={{ xs: 9, md: 8, lg: 9 }} sx={{ textAlign: "left" }}>
             <div>
-              <Typography
-                className="zone"
-              >
-                {data.zone}
-              </Typography>
-              <Typography className="centertype">
-                {data.centerType}
-              </Typography>
-              <Typography
-                className="promo"
-              >
-                {data.promo}
-              </Typography>
+              <Typography className="zone">{data.zone}</Typography>
+              <Typography className="centertype">{data.centerType}</Typography>
+              <Typography className="promo">{data.promo}</Typography>
               <Typography>{convertAddress(data)}</Typography>
               <Typography>{convertTimeTable(data)}</Typography>
             </div>

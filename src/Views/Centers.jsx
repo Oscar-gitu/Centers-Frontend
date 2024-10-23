@@ -19,19 +19,6 @@ const Centers = () => {
   const [optionsCenterType, setoptionsCenterType] = useState("");
   const [optionsServices, setoptionsServices] = useState("");
 
-  const setParameters = (data) => { //Deshabilitado - Se guardan por unica ves el listado para los filtros, para darle al usuario todas las opciones
-    const { uniqueZones, uniqueCenterTypes, uniqueServices, uniqueStates } =
-      getParameters(data);
-    if (zones.length > 0) {
-      setStates(uniqueStates);
-    } else {
-      setZones(uniqueZones);
-      setCenterType(uniqueCenterTypes);
-      setServices(uniqueServices);
-      setStates(uniqueStates);
-    }
-  };
-
   const fetchData = async () => {
     const headers = {
       "X-Parse-Application-Id": config.appId,
@@ -52,12 +39,11 @@ const Centers = () => {
         let dataResponse = response.data.result.message;
         setdata(dataResponse); //Se guardan los valores
         const { uniqueZones, uniqueCenterTypes, uniqueServices, uniqueStates } =
-          getParameters(dataResponse);
+          getParameters(dataResponse); //Se crean los valores para los select
         setZones(uniqueZones);
         setCenterType(uniqueCenterTypes);
         setServices(uniqueServices);
         setStates(uniqueStates);
-        //setParameters(dataResponse); //Se crean los valores para los select
       } else {
         console.error(`Error: ${response}`);
       }

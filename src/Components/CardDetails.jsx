@@ -6,7 +6,7 @@ import {
   Typography,
   Grid2 as Grid,
 } from "@mui/material";
-import Logo from "../img/LogoDiente.png";
+import Logo from "../img/toothLogo.png";
 import { convertTimeTable, convertAddress } from "../Utils/cardDetailsUtils";
 import ModalDetails from "./ModalDetails";
 import "./css/cardDetails.css";
@@ -20,7 +20,7 @@ const CardDetails = memo(function CardDetails({ data }) {
             size={{ xs: 3, md: 4, lg: 3 }}
             style={{ alignContent: "center", textAlign: "center" }}
           >
-            <div>
+            <div style={{marginRight:15}}>
               <img src={Logo} alt="" className="icon" />
             </div>
           </Grid>

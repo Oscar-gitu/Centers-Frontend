@@ -7,7 +7,7 @@ import { getParameters } from "../Utils/centerUtils";
 import SelectParameters from "../Components/SelectParameters";
 import NotFound from "../Components/NotFound";
 import config from "../config";
-import './css/centers.css'
+import "./css/centers.css";
 
 const Centers = () => {
   const [data, setdata] = useState(result);
@@ -19,12 +19,12 @@ const Centers = () => {
   const [optionsCenterType, setoptionsCenterType] = useState("");
   const [optionsServices, setoptionsServices] = useState("");
 
-  const setParameters = (data) => {
+  const setParameters = (data) => { //Deshabilitado - Se guardan por unica ves el listado para los filtros, para darle al usuario todas las opciones
     const { uniqueZones, uniqueCenterTypes, uniqueServices, uniqueStates } =
       getParameters(data);
     if (zones.length > 0) {
       setStates(uniqueStates);
-    } else { //Se guardan por unica ves el listado para los filtros, para darle al usuario todas las opciones
+    } else {
       setZones(uniqueZones);
       setCenterType(uniqueCenterTypes);
       setServices(uniqueServices);
@@ -51,7 +51,13 @@ const Centers = () => {
       if (response.status === 200) {
         let dataResponse = response.data.result.message;
         setdata(dataResponse); //Se guardan los valores
-        setParameters(dataResponse); //Se crean los valores para los select
+        const { uniqueZones, uniqueCenterTypes, uniqueServices, uniqueStates } =
+          getParameters(dataResponse);
+        setZones(uniqueZones);
+        setCenterType(uniqueCenterTypes);
+        setServices(uniqueServices);
+        setStates(uniqueStates);
+        //setParameters(dataResponse); //Se crean los valores para los select
       } else {
         console.error(`Error: ${response}`);
       }
@@ -67,10 +73,16 @@ const Centers = () => {
   return (
     <div className="principal-div">
       <div style={{ marginBottom: 30 }}>
-         <Grid container spacing={3}> {/*por cada listado de opciones se crea un select */}
+        <Grid container spacing={3}>
+          {" "}
+          {/*por cada listado de opciones se crea un select */}
           {[
             { data: zones, setOption: setoptionsZone, name: "Zona" },
-            { data: centerType, setOption: setoptionsCenterType, name: "Centro" },
+            {
+              data: centerType,
+              setOption: setoptionsCenterType,
+              name: "Centro",
+            },
             { data: services, setOption: setoptionsServices, name: "Servicio" },
           ].map((param, index) => (
             <Grid size={{ xs: 12, sm: 4 }} key={index}>
@@ -87,28 +99,34 @@ const Centers = () => {
       </div>
       <Grid container spacing={3} justifyContent="center">
         {data.length > 0 ? (
-          states.map((state) => ( //Se filtra por estado para organizarlo y despues se lista cada valor
-            <Grid size={12} key={state}>
-              <div>
-                <Typography variant="h6" className="state">{state}</Typography>
-                <Grid container spacing={2}>
-                  {data
-                    .filter(
-                      (item) =>
-                        item.state === state ||
-                        (!item.state && state === "No Especificado")
-                    )
-                    .map((filteredItem, index) => (
-                      <Grid key={index} size={{ xs: 12, md: 4 }}>
-                        <div>
-                          <CardDetails data={filteredItem} />
-                        </div>
-                      </Grid>
-                    ))}
-                </Grid>
-              </div>
-            </Grid>
-          ))
+          states.map(
+            (
+              state //Se filtra por estado para organizarlo y despues se lista cada valor
+            ) => (
+              <Grid size={12} key={state}>
+                <div>
+                  <Typography variant="h6" className="state">
+                    {state}
+                  </Typography>
+                  <Grid container spacing={2}>
+                    {data
+                      .filter(
+                        (item) =>
+                          item.state === state ||
+                          (!item.state && state === "No Especificado")
+                      )
+                      .map((filteredItem, index) => (
+                        <Grid key={index} size={{ xs: 12, md: 4 }}>
+                          <div>
+                            <CardDetails data={filteredItem} />
+                          </div>
+                        </Grid>
+                      ))}
+                  </Grid>
+                </div>
+              </Grid>
+            )
+          )
         ) : (
           <NotFound />
         )}

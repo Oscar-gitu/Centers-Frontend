@@ -28,10 +28,10 @@ const Centers = () => {
       const response = await axios.post(
         config.apiUrl,
         {
-          Limit: 100,
-          Zone: optionsZone === "Todos" ? "" : optionsZone,
-          Center_Type: optionsCenterType === "Todos" ? "" : optionsCenterType,
-          Services: optionsServices === "Todos" ? "" : optionsServices,
+          limit: 100,
+          zone: optionsZone === "Todos" ? "" : optionsZone,
+          center_type: optionsCenterType === "Todos" ? "" : optionsCenterType,
+          services: optionsServices === "Todos" ? "" : optionsServices,
         },
         { headers }
       );
@@ -60,7 +60,6 @@ const Centers = () => {
     <div className="principal-div">
       <div style={{ marginBottom: 30 }}>
         <Grid container spacing={3}>
-          {" "}
           {/*por cada listado de opciones se crea un select */}
           {[
             { data: zones, setOption: setoptionsZone, name: "Zona" },

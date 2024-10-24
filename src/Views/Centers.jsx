@@ -3,16 +3,16 @@ import React from "react";
 import axios from "axios";
 import { Grid2 as Grid, Typography } from "@mui/material";
 import CardDetails from "../Components/CardDetails";
-import { result } from "../Utils/cardDetailsUtils";
 import { getParameters } from "../Utils/centerUtils";
 import SelectParameters from "../Components/SelectParameters";
 import NotFound from "../Components/NotFound";
 import config from "../config";
 import "./css/centers.css";
 import Error from "../Components/Error";
+import LoadInformation from "../Components/LoadInformation";
 
 const Centers = () => {
-  const [data, setdata] = useState(result);
+  const [data, setdata] = useState([]);
   const [zones, setZones] = useState([]);
   const [centerType, setCenterType] = useState([]);
   const [services, setServices] = useState([]);
@@ -21,6 +21,7 @@ const Centers = () => {
   const [optionsCenterType, setoptionsCenterType] = useState("");
   const [optionsServices, setoptionsServices] = useState("");
   const [error, setError] = useState(false);
+  const [load, setload] = useState(true);
 
   const fetchData = async () => {
     const headers = {
@@ -39,6 +40,7 @@ const Centers = () => {
         { headers }
       );
       if (response.status === 200) {
+        setload(false);
         setError(false);
         let dataResponse = response.data.result.message;
         setdata(dataResponse); //Se guardan los valores
@@ -49,10 +51,12 @@ const Centers = () => {
         setServices(uniqueServices);
         setStates(uniqueStates);
       } else {
+        setload(false);
         setError(true);
         console.error(`Error: ${response}`);
       }
     } catch (error) {
+      setload(false);
       setError(true);
       console.error("Error en la petición:", error);
     }
@@ -126,6 +130,8 @@ const Centers = () => {
                   </Grid>
                 )
               )
+            ) : load ? (
+              <LoadInformation />
             ) : (
               <NotFound />
             )}

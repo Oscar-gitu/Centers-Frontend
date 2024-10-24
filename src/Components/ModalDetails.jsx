@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { convertServices } from "../Utils/modelDetailsUtils";
 import "./css/modalDetails.css";
-import maps from "../img/maps.jpeg";
+import maps from "../img/maps.jpg";
 
 export default function ModalDetails({ data }) {
   const [open, setOpen] = React.useState(false);

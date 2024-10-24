@@ -5,20 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { convertServices } from "../Utils/modelDetailsUtils";
 import "./css/modalDetails.css";
-import maps from "../img/maps.jpg";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "60%",
-  bgcolor: "background.paper",
-  border: "1px solid #000",
-  boxShadow: "5px 5px 15px rgba(0, 0, 0, 0.1)",
-  p: 4,
-  borderRadius: "16px",
-};
+import maps from "../img/maps.jpeg";
 
 export default function ModalDetails({ data }) {
   const [open, setOpen] = React.useState(false);
@@ -36,7 +23,7 @@ export default function ModalDetails({ data }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box className="modal">
           <Typography
             className="center-name"
             id="modal-modal-title"
